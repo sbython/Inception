@@ -1,10 +1,13 @@
 services:
   nginx:
-    # image: nginx:2002
+    image: nginx:2002
     build: ./srcs/requirements/nginx
     ports:
-      - 8001:80
-    # volumes:
-    #   - ./srcs/requirements/nginx/conf/nginx.conf:/etc/nginx/nginx.conf
+      - 80:80
+      - 443:443
+    volumes:
+      - ./srcfs/requirements/wordpress:/var/www/html
 
     restart: unless-stopped
+    env_file:
+      - ./srcs/.env

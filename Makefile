@@ -1,7 +1,11 @@
 
 
 build:
-	docker compose up -d 
+	docker compose up --build -d
+down:
+	-docker compose down
+	-docker compose down -v
+	-docker compose down --rmi all
 clean:
 	-docker rm -f $(shell docker ps -aq)
 	-docker rmi -f $(shell docker images -q)
